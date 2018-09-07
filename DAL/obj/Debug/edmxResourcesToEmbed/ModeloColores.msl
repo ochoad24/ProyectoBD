@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ColoresModelStoreContainer" CdmEntityContainer="ColoresEntities2">
+    <EntitySetMapping Name="Categoriaproducto">
+      <EntityTypeMapping TypeName="ColoresModel.Categoriaproducto">
+        <MappingFragment StoreEntitySet="Categoriaproducto">
+          <ScalarProperty Name="CategoriaproductoId" ColumnName="CategoriaproductoId" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Unidad" ColumnName="Unidad" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Detallepago">
+      <EntityTypeMapping TypeName="ColoresModel.Detallepago">
+        <MappingFragment StoreEntitySet="Detallepago">
+          <ScalarProperty Name="DetallepagoId" ColumnName="DetallepagoId" />
+          <ScalarProperty Name="HojaencabezadoId" ColumnName="HojaencabezadoId" />
+          <ScalarProperty Name="PagoId" ColumnName="PagoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hojadetalle">
+      <EntityTypeMapping TypeName="ColoresModel.Hojadetalle">
+        <MappingFragment StoreEntitySet="Hojadetalle">
+          <ScalarProperty Name="HojadetalleId" ColumnName="HojadetalleId" />
+          <ScalarProperty Name="HojaencabezadoId" ColumnName="HojaencabezadoId" />
+          <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+          <ScalarProperty Name="Fechaasignacion" ColumnName="Fechaasignacion" />
+          <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hojaencabezado">
+      <EntityTypeMapping TypeName="ColoresModel.Hojaencabezado">
+        <MappingFragment StoreEntitySet="Hojaencabezado">
+          <ScalarProperty Name="HojaencabezadoId" ColumnName="HojaencabezadoId" />
+          <ScalarProperty Name="Serie" ColumnName="Serie" />
+          <ScalarProperty Name="Fechacreacion" ColumnName="Fechacreacion" />
+          <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+          <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pago">
+      <EntityTypeMapping TypeName="ColoresModel.Pago">
+        <MappingFragment StoreEntitySet="Pago">
+          <ScalarProperty Name="PagoId" ColumnName="PagoId" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="CodigoTarjeta" ColumnName="CodigoTarjeta" />
+          <ScalarProperty Name="Fechaexpedido" ColumnName="Fechaexpedido" />
+          <ScalarProperty Name="Fechaacreditacion" ColumnName="Fechaacreditacion" />
+          <ScalarProperty Name="Nocheque" ColumnName="Nocheque" />
+          <ScalarProperty Name="Nocuenta" ColumnName="Nocuenta" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Notarjeta" ColumnName="Notarjeta" />
+          <ScalarProperty Name="Caducidad" ColumnName="Caducidad" />
+          <ScalarProperty Name="TipopagoId" ColumnName="TipopagoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Permiso">
+      <EntityTypeMapping TypeName="ColoresModel.Permiso">
+        <MappingFragment StoreEntitySet="Permiso">
+          <ScalarProperty Name="PermisoId" ColumnName="PermisoId" />
+          <ScalarProperty Name="Producto" ColumnName="Producto" />
+          <ScalarProperty Name="Caja" ColumnName="Caja" />
+          <ScalarProperty Name="Reportes" ColumnName="Reportes" />
+          <ScalarProperty Name="Empleado" ColumnName="Empleado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Producto">
+      <EntityTypeMapping TypeName="ColoresModel.Producto">
+        <MappingFragment StoreEntitySet="Producto">
+          <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Precioventa" ColumnName="Precioventa" />
+          <ScalarProperty Name="Preciocompra" ColumnName="Preciocompra" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Existencia" ColumnName="Existencia" />
+          <ScalarProperty Name="Duracion" ColumnName="Duracion" />
+          <ScalarProperty Name="Extension" ColumnName="Extension" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="TipoproductoId" ColumnName="TipoproductoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rol">
+      <EntityTypeMapping TypeName="ColoresModel.Rol">
+        <MappingFragment StoreEntitySet="Rol">
+          <ScalarProperty Name="RolId" ColumnName="RolId" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="PermisoId" ColumnName="PermisoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tipopago">
+      <EntityTypeMapping TypeName="ColoresModel.Tipopago">
+        <MappingFragment StoreEntitySet="Tipopago">
+          <ScalarProperty Name="TipopagoId" ColumnName="TipopagoId" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tipoproducto">
+      <EntityTypeMapping TypeName="ColoresModel.Tipoproducto">
+        <MappingFragment StoreEntitySet="Tipoproducto">
+          <ScalarProperty Name="TipoproductoId" ColumnName="TipoproductoId" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="CategoriaproductoId" ColumnName="CategoriaproductoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="ColoresModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+          <ScalarProperty Name="PrimerNombre" ColumnName="PrimerNombre" />
+          <ScalarProperty Name="Segundonombre" ColumnName="Segundonombre" />
+          <ScalarProperty Name="Primerapellido" ColumnName="Primerapellido" />
+          <ScalarProperty Name="Segundoapellido" ColumnName="Segundoapellido" />
+          <ScalarProperty Name="Dpi" ColumnName="Dpi" />
+          <ScalarProperty Name="Fechanacimiento" ColumnName="Fechanacimiento" />
+          <ScalarProperty Name="Fechacreacion" ColumnName="Fechacreacion" />
+          <ScalarProperty Name="RolId" ColumnName="RolId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

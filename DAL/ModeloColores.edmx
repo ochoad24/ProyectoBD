@@ -1,0 +1,785 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ColoresModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categoriaproducto">
+          <Key>
+            <PropertyRef Name="CategoriaproductoId" />
+          </Key>
+          <Property Name="CategoriaproductoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Unidad" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Detallepago">
+          <Key>
+            <PropertyRef Name="DetallepagoId" />
+          </Key>
+          <Property Name="DetallepagoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HojaencabezadoId" Type="int" />
+          <Property Name="PagoId" Type="int" />
+        </EntityType>
+        <EntityType Name="Hojadetalle">
+          <Key>
+            <PropertyRef Name="HojadetalleId" />
+          </Key>
+          <Property Name="HojadetalleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HojaencabezadoId" Type="int" />
+          <Property Name="Subtotal" Type="float" Nullable="false" />
+          <Property Name="Fechaasignacion" Type="datetime" Nullable="false" />
+          <Property Name="ProductoId" Type="int" />
+        </EntityType>
+        <EntityType Name="Hojaencabezado">
+          <Key>
+            <PropertyRef Name="HojaencabezadoId" />
+          </Key>
+          <Property Name="HojaencabezadoId" Type="int" Nullable="false" />
+          <Property Name="Serie" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Fechacreacion" Type="datetime" Nullable="false" />
+          <Property Name="Observacion" Type="nvarchar" MaxLength="500" />
+          <Property Name="UsuarioId" Type="int" />
+          <Property Name="Total" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pago">
+          <Key>
+            <PropertyRef Name="PagoId" />
+          </Key>
+          <Property Name="PagoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CodigoTarjeta" Type="int" Nullable="false" />
+          <Property Name="Fechaexpedido" Type="date" />
+          <Property Name="Fechaacreditacion" Type="date" />
+          <Property Name="Nocheque" Type="nvarchar" MaxLength="20" />
+          <Property Name="Nocuenta" Type="nvarchar" MaxLength="20" />
+          <Property Name="Cantidad" Type="float" Nullable="false" />
+          <Property Name="Notarjeta" Type="nvarchar" MaxLength="20" />
+          <Property Name="Caducidad" Type="nvarchar" MaxLength="20" />
+          <Property Name="TipopagoId" Type="int" />
+        </EntityType>
+        <EntityType Name="Permiso">
+          <Key>
+            <PropertyRef Name="PermisoId" />
+          </Key>
+          <Property Name="PermisoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Producto" Type="bit" Nullable="false" />
+          <Property Name="Caja" Type="bit" Nullable="false" />
+          <Property Name="Reportes" Type="bit" Nullable="false" />
+          <Property Name="Empleado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="ProductoId" />
+          </Key>
+          <Property Name="ProductoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Precioventa" Type="float" Nullable="false" />
+          <Property Name="Preciocompra" Type="float" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Descuento" Type="float" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="200" />
+          <Property Name="Existencia" Type="int" Nullable="false" />
+          <Property Name="Duracion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Extension" Type="nvarchar" MaxLength="25" />
+          <Property Name="Color" Type="nvarchar" MaxLength="50" />
+          <Property Name="TipoproductoId" Type="int" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="RolId" />
+          </Key>
+          <Property Name="RolId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="PermisoId" Type="int" />
+        </EntityType>
+        <EntityType Name="Tipopago">
+          <Key>
+            <PropertyRef Name="TipopagoId" />
+          </Key>
+          <Property Name="TipopagoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tipoproducto">
+          <Key>
+            <PropertyRef Name="TipoproductoId" />
+          </Key>
+          <Property Name="TipoproductoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="200" />
+          <Property Name="CategoriaproductoId" Type="int" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="UsuarioId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PrimerNombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Segundonombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Primerapellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Segundoapellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Dpi" Type="nvarchar" MaxLength="13" Nullable="false" />
+          <Property Name="Fechanacimiento" Type="datetime" Nullable="false" />
+          <Property Name="Fechacreacion" Type="date" Nullable="false" />
+          <Property Name="RolId" Type="int" />
+        </EntityType>
+        <Association Name="Relationship11">
+          <End Role="Hojaencabezado" Type="Self.Hojaencabezado" Multiplicity="0..1" />
+          <End Role="Hojadetalle" Type="Self.Hojadetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hojaencabezado">
+              <PropertyRef Name="HojaencabezadoId" />
+            </Principal>
+            <Dependent Role="Hojadetalle">
+              <PropertyRef Name="HojaencabezadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship13">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="RolId" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship14">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Hojaencabezado" Type="Self.Hojaencabezado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioId" />
+            </Principal>
+            <Dependent Role="Hojaencabezado">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship15">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+          <End Role="Hojadetalle" Type="Self.Hojadetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="ProductoId" />
+            </Principal>
+            <Dependent Role="Hojadetalle">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship16">
+          <End Role="Tipoproducto" Type="Self.Tipoproducto" Multiplicity="0..1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipoproducto">
+              <PropertyRef Name="TipoproductoId" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="TipoproductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship17">
+          <End Role="Categoriaproducto" Type="Self.Categoriaproducto" Multiplicity="0..1" />
+          <End Role="Tipoproducto" Type="Self.Tipoproducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoriaproducto">
+              <PropertyRef Name="CategoriaproductoId" />
+            </Principal>
+            <Dependent Role="Tipoproducto">
+              <PropertyRef Name="CategoriaproductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship18">
+          <End Role="Permiso" Type="Self.Permiso" Multiplicity="0..1" />
+          <End Role="Rol" Type="Self.Rol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permiso">
+              <PropertyRef Name="PermisoId" />
+            </Principal>
+            <Dependent Role="Rol">
+              <PropertyRef Name="PermisoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship19">
+          <End Role="Tipopago" Type="Self.Tipopago" Multiplicity="0..1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipopago">
+              <PropertyRef Name="TipopagoId" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="TipopagoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship20">
+          <End Role="Hojaencabezado" Type="Self.Hojaencabezado" Multiplicity="0..1" />
+          <End Role="Detallepago" Type="Self.Detallepago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hojaencabezado">
+              <PropertyRef Name="HojaencabezadoId" />
+            </Principal>
+            <Dependent Role="Detallepago">
+              <PropertyRef Name="HojaencabezadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship21">
+          <End Role="Pago" Type="Self.Pago" Multiplicity="0..1" />
+          <End Role="Detallepago" Type="Self.Detallepago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pago">
+              <PropertyRef Name="PagoId" />
+            </Principal>
+            <Dependent Role="Detallepago">
+              <PropertyRef Name="PagoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ColoresModelStoreContainer">
+          <EntitySet Name="Categoriaproducto" EntityType="Self.Categoriaproducto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detallepago" EntityType="Self.Detallepago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hojadetalle" EntityType="Self.Hojadetalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hojaencabezado" EntityType="Self.Hojaencabezado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pago" EntityType="Self.Pago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permiso" EntityType="Self.Permiso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipopago" EntityType="Self.Tipopago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipoproducto" EntityType="Self.Tipoproducto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Relationship11" Association="Self.Relationship11">
+            <End Role="Hojaencabezado" EntitySet="Hojaencabezado" />
+            <End Role="Hojadetalle" EntitySet="Hojadetalle" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship13" Association="Self.Relationship13">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship14" Association="Self.Relationship14">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Hojaencabezado" EntitySet="Hojaencabezado" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship15" Association="Self.Relationship15">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Hojadetalle" EntitySet="Hojadetalle" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship16" Association="Self.Relationship16">
+            <End Role="Tipoproducto" EntitySet="Tipoproducto" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship17" Association="Self.Relationship17">
+            <End Role="Categoriaproducto" EntitySet="Categoriaproducto" />
+            <End Role="Tipoproducto" EntitySet="Tipoproducto" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship18" Association="Self.Relationship18">
+            <End Role="Permiso" EntitySet="Permiso" />
+            <End Role="Rol" EntitySet="Rol" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship19" Association="Self.Relationship19">
+            <End Role="Tipopago" EntitySet="Tipopago" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship20" Association="Self.Relationship20">
+            <End Role="Hojaencabezado" EntitySet="Hojaencabezado" />
+            <End Role="Detallepago" EntitySet="Detallepago" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship21" Association="Self.Relationship21">
+            <End Role="Pago" EntitySet="Pago" />
+            <End Role="Detallepago" EntitySet="Detallepago" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ColoresModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Categoriaproducto">
+          <Key>
+            <PropertyRef Name="CategoriaproductoId" />
+          </Key>
+          <Property Name="CategoriaproductoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Unidad" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tipoproducto" Relationship="Self.Relationship17" FromRole="Categoriaproducto" ToRole="Tipoproducto" />
+        </EntityType>
+        <EntityType Name="Detallepago">
+          <Key>
+            <PropertyRef Name="DetallepagoId" />
+          </Key>
+          <Property Name="DetallepagoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HojaencabezadoId" Type="Int32" />
+          <Property Name="PagoId" Type="Int32" />
+          <NavigationProperty Name="Hojaencabezado" Relationship="Self.Relationship20" FromRole="Detallepago" ToRole="Hojaencabezado" />
+          <NavigationProperty Name="Pago" Relationship="Self.Relationship21" FromRole="Detallepago" ToRole="Pago" />
+        </EntityType>
+        <EntityType Name="Hojadetalle">
+          <Key>
+            <PropertyRef Name="HojadetalleId" />
+          </Key>
+          <Property Name="HojadetalleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HojaencabezadoId" Type="Int32" />
+          <Property Name="Subtotal" Type="Double" Nullable="false" />
+          <Property Name="Fechaasignacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ProductoId" Type="Int32" />
+          <NavigationProperty Name="Hojaencabezado" Relationship="Self.Relationship11" FromRole="Hojadetalle" ToRole="Hojaencabezado" />
+          <NavigationProperty Name="Producto" Relationship="Self.Relationship15" FromRole="Hojadetalle" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Hojaencabezado">
+          <Key>
+            <PropertyRef Name="HojaencabezadoId" />
+          </Key>
+          <Property Name="HojaencabezadoId" Type="Int32" Nullable="false" />
+          <Property Name="Serie" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fechacreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Observacion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="UsuarioId" Type="Int32" />
+          <Property Name="Total" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Detallepago" Relationship="Self.Relationship20" FromRole="Hojaencabezado" ToRole="Detallepago" />
+          <NavigationProperty Name="Hojadetalle" Relationship="Self.Relationship11" FromRole="Hojaencabezado" ToRole="Hojadetalle" />
+          <NavigationProperty Name="Usuario" Relationship="Self.Relationship14" FromRole="Hojaencabezado" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Pago">
+          <Key>
+            <PropertyRef Name="PagoId" />
+          </Key>
+          <Property Name="PagoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CodigoTarjeta" Type="Int32" Nullable="false" />
+          <Property Name="Fechaexpedido" Type="DateTime" Precision="0" />
+          <Property Name="Fechaacreditacion" Type="DateTime" Precision="0" />
+          <Property Name="Nocheque" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Nocuenta" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Cantidad" Type="Double" Nullable="false" />
+          <Property Name="Notarjeta" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Caducidad" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TipopagoId" Type="Int32" />
+          <NavigationProperty Name="Detallepago" Relationship="Self.Relationship21" FromRole="Pago" ToRole="Detallepago" />
+          <NavigationProperty Name="Tipopago" Relationship="Self.Relationship19" FromRole="Pago" ToRole="Tipopago" />
+        </EntityType>
+        <EntityType Name="Permiso">
+          <Key>
+            <PropertyRef Name="PermisoId" />
+          </Key>
+          <Property Name="PermisoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Producto" Type="Boolean" Nullable="false" />
+          <Property Name="Caja" Type="Boolean" Nullable="false" />
+          <Property Name="Reportes" Type="Boolean" Nullable="false" />
+          <Property Name="Empleado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Rol" Relationship="Self.Relationship18" FromRole="Permiso" ToRole="Rol" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="ProductoId" />
+          </Key>
+          <Property Name="ProductoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Precioventa" Type="Double" Nullable="false" />
+          <Property Name="Preciocompra" Type="Double" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Descuento" Type="Double" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Existencia" Type="Int32" Nullable="false" />
+          <Property Name="Duracion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Extension" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TipoproductoId" Type="Int32" />
+          <NavigationProperty Name="Hojadetalle" Relationship="Self.Relationship15" FromRole="Producto" ToRole="Hojadetalle" />
+          <NavigationProperty Name="Tipoproducto" Relationship="Self.Relationship16" FromRole="Producto" ToRole="Tipoproducto" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="RolId" />
+          </Key>
+          <Property Name="RolId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PermisoId" Type="Int32" />
+          <NavigationProperty Name="Permiso" Relationship="Self.Relationship18" FromRole="Rol" ToRole="Permiso" />
+          <NavigationProperty Name="Usuario" Relationship="Self.Relationship13" FromRole="Rol" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Tipopago">
+          <Key>
+            <PropertyRef Name="TipopagoId" />
+          </Key>
+          <Property Name="TipopagoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Pago" Relationship="Self.Relationship19" FromRole="Tipopago" ToRole="Pago" />
+        </EntityType>
+        <EntityType Name="Tipoproducto">
+          <Key>
+            <PropertyRef Name="TipoproductoId" />
+          </Key>
+          <Property Name="TipoproductoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CategoriaproductoId" Type="Int32" />
+          <NavigationProperty Name="Categoriaproducto" Relationship="Self.Relationship17" FromRole="Tipoproducto" ToRole="Categoriaproducto" />
+          <NavigationProperty Name="Producto" Relationship="Self.Relationship16" FromRole="Tipoproducto" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrimerNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Segundonombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Primerapellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Segundoapellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Dpi" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fechanacimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Fechacreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RolId" Type="Int32" />
+          <NavigationProperty Name="Hojaencabezado" Relationship="Self.Relationship14" FromRole="Usuario" ToRole="Hojaencabezado" />
+          <NavigationProperty Name="Rol" Relationship="Self.Relationship13" FromRole="Usuario" ToRole="Rol" />
+        </EntityType>
+        <Association Name="Relationship17">
+          <End Role="Categoriaproducto" Type="Self.Categoriaproducto" Multiplicity="0..1" />
+          <End Role="Tipoproducto" Type="Self.Tipoproducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoriaproducto">
+              <PropertyRef Name="CategoriaproductoId" />
+            </Principal>
+            <Dependent Role="Tipoproducto">
+              <PropertyRef Name="CategoriaproductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship20">
+          <End Role="Hojaencabezado" Type="Self.Hojaencabezado" Multiplicity="0..1" />
+          <End Role="Detallepago" Type="Self.Detallepago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hojaencabezado">
+              <PropertyRef Name="HojaencabezadoId" />
+            </Principal>
+            <Dependent Role="Detallepago">
+              <PropertyRef Name="HojaencabezadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship21">
+          <End Role="Pago" Type="Self.Pago" Multiplicity="0..1" />
+          <End Role="Detallepago" Type="Self.Detallepago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pago">
+              <PropertyRef Name="PagoId" />
+            </Principal>
+            <Dependent Role="Detallepago">
+              <PropertyRef Name="PagoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship11">
+          <End Role="Hojaencabezado" Type="Self.Hojaencabezado" Multiplicity="0..1" />
+          <End Role="Hojadetalle" Type="Self.Hojadetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hojaencabezado">
+              <PropertyRef Name="HojaencabezadoId" />
+            </Principal>
+            <Dependent Role="Hojadetalle">
+              <PropertyRef Name="HojaencabezadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship15">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+          <End Role="Hojadetalle" Type="Self.Hojadetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="ProductoId" />
+            </Principal>
+            <Dependent Role="Hojadetalle">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship14">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Hojaencabezado" Type="Self.Hojaencabezado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioId" />
+            </Principal>
+            <Dependent Role="Hojaencabezado">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship19">
+          <End Role="Tipopago" Type="Self.Tipopago" Multiplicity="0..1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipopago">
+              <PropertyRef Name="TipopagoId" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="TipopagoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship18">
+          <End Role="Permiso" Type="Self.Permiso" Multiplicity="0..1" />
+          <End Role="Rol" Type="Self.Rol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permiso">
+              <PropertyRef Name="PermisoId" />
+            </Principal>
+            <Dependent Role="Rol">
+              <PropertyRef Name="PermisoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship16">
+          <End Role="Tipoproducto" Type="Self.Tipoproducto" Multiplicity="0..1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipoproducto">
+              <PropertyRef Name="TipoproductoId" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="TipoproductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship13">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="RolId" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ColoresEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categoriaproducto" EntityType="Self.Categoriaproducto" />
+          <EntitySet Name="Detallepago" EntityType="Self.Detallepago" />
+          <EntitySet Name="Hojadetalle" EntityType="Self.Hojadetalle" />
+          <EntitySet Name="Hojaencabezado" EntityType="Self.Hojaencabezado" />
+          <EntitySet Name="Pago" EntityType="Self.Pago" />
+          <EntitySet Name="Permiso" EntityType="Self.Permiso" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" />
+          <EntitySet Name="Tipopago" EntityType="Self.Tipopago" />
+          <EntitySet Name="Tipoproducto" EntityType="Self.Tipoproducto" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="Relationship17" Association="Self.Relationship17">
+            <End Role="Categoriaproducto" EntitySet="Categoriaproducto" />
+            <End Role="Tipoproducto" EntitySet="Tipoproducto" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship20" Association="Self.Relationship20">
+            <End Role="Hojaencabezado" EntitySet="Hojaencabezado" />
+            <End Role="Detallepago" EntitySet="Detallepago" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship21" Association="Self.Relationship21">
+            <End Role="Pago" EntitySet="Pago" />
+            <End Role="Detallepago" EntitySet="Detallepago" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship11" Association="Self.Relationship11">
+            <End Role="Hojaencabezado" EntitySet="Hojaencabezado" />
+            <End Role="Hojadetalle" EntitySet="Hojadetalle" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship15" Association="Self.Relationship15">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Hojadetalle" EntitySet="Hojadetalle" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship14" Association="Self.Relationship14">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Hojaencabezado" EntitySet="Hojaencabezado" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship19" Association="Self.Relationship19">
+            <End Role="Tipopago" EntitySet="Tipopago" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship18" Association="Self.Relationship18">
+            <End Role="Permiso" EntitySet="Permiso" />
+            <End Role="Rol" EntitySet="Rol" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship16" Association="Self.Relationship16">
+            <End Role="Tipoproducto" EntitySet="Tipoproducto" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship13" Association="Self.Relationship13">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ColoresModelStoreContainer" CdmEntityContainer="ColoresEntities2">
+          <EntitySetMapping Name="Categoriaproducto">
+            <EntityTypeMapping TypeName="ColoresModel.Categoriaproducto">
+              <MappingFragment StoreEntitySet="Categoriaproducto">
+                <ScalarProperty Name="CategoriaproductoId" ColumnName="CategoriaproductoId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Unidad" ColumnName="Unidad" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detallepago">
+            <EntityTypeMapping TypeName="ColoresModel.Detallepago">
+              <MappingFragment StoreEntitySet="Detallepago">
+                <ScalarProperty Name="DetallepagoId" ColumnName="DetallepagoId" />
+                <ScalarProperty Name="HojaencabezadoId" ColumnName="HojaencabezadoId" />
+                <ScalarProperty Name="PagoId" ColumnName="PagoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hojadetalle">
+            <EntityTypeMapping TypeName="ColoresModel.Hojadetalle">
+              <MappingFragment StoreEntitySet="Hojadetalle">
+                <ScalarProperty Name="HojadetalleId" ColumnName="HojadetalleId" />
+                <ScalarProperty Name="HojaencabezadoId" ColumnName="HojaencabezadoId" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="Fechaasignacion" ColumnName="Fechaasignacion" />
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hojaencabezado">
+            <EntityTypeMapping TypeName="ColoresModel.Hojaencabezado">
+              <MappingFragment StoreEntitySet="Hojaencabezado">
+                <ScalarProperty Name="HojaencabezadoId" ColumnName="HojaencabezadoId" />
+                <ScalarProperty Name="Serie" ColumnName="Serie" />
+                <ScalarProperty Name="Fechacreacion" ColumnName="Fechacreacion" />
+                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pago">
+            <EntityTypeMapping TypeName="ColoresModel.Pago">
+              <MappingFragment StoreEntitySet="Pago">
+                <ScalarProperty Name="PagoId" ColumnName="PagoId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="CodigoTarjeta" ColumnName="CodigoTarjeta" />
+                <ScalarProperty Name="Fechaexpedido" ColumnName="Fechaexpedido" />
+                <ScalarProperty Name="Fechaacreditacion" ColumnName="Fechaacreditacion" />
+                <ScalarProperty Name="Nocheque" ColumnName="Nocheque" />
+                <ScalarProperty Name="Nocuenta" ColumnName="Nocuenta" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Notarjeta" ColumnName="Notarjeta" />
+                <ScalarProperty Name="Caducidad" ColumnName="Caducidad" />
+                <ScalarProperty Name="TipopagoId" ColumnName="TipopagoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permiso">
+            <EntityTypeMapping TypeName="ColoresModel.Permiso">
+              <MappingFragment StoreEntitySet="Permiso">
+                <ScalarProperty Name="PermisoId" ColumnName="PermisoId" />
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="Caja" ColumnName="Caja" />
+                <ScalarProperty Name="Reportes" ColumnName="Reportes" />
+                <ScalarProperty Name="Empleado" ColumnName="Empleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="ColoresModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Precioventa" ColumnName="Precioventa" />
+                <ScalarProperty Name="Preciocompra" ColumnName="Preciocompra" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Existencia" ColumnName="Existencia" />
+                <ScalarProperty Name="Duracion" ColumnName="Duracion" />
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="TipoproductoId" ColumnName="TipoproductoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="ColoresModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PermisoId" ColumnName="PermisoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipopago">
+            <EntityTypeMapping TypeName="ColoresModel.Tipopago">
+              <MappingFragment StoreEntitySet="Tipopago">
+                <ScalarProperty Name="TipopagoId" ColumnName="TipopagoId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipoproducto">
+            <EntityTypeMapping TypeName="ColoresModel.Tipoproducto">
+              <MappingFragment StoreEntitySet="Tipoproducto">
+                <ScalarProperty Name="TipoproductoId" ColumnName="TipoproductoId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="CategoriaproductoId" ColumnName="CategoriaproductoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="ColoresModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="PrimerNombre" ColumnName="PrimerNombre" />
+                <ScalarProperty Name="Segundonombre" ColumnName="Segundonombre" />
+                <ScalarProperty Name="Primerapellido" ColumnName="Primerapellido" />
+                <ScalarProperty Name="Segundoapellido" ColumnName="Segundoapellido" />
+                <ScalarProperty Name="Dpi" ColumnName="Dpi" />
+                <ScalarProperty Name="Fechanacimiento" ColumnName="Fechanacimiento" />
+                <ScalarProperty Name="Fechacreacion" ColumnName="Fechacreacion" />
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
